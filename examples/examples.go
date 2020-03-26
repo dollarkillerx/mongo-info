@@ -61,3 +61,12 @@ func (c *MongoCollection) Select(filter interface{}) (*mongo.SingleResult,error)
 	si := c.collection.FindOne(context.TODO(),filter)
 	return si,si.Err()
 }
+
+func (c *MongoCollection) FindAll(filter interface{}) (*mongo.Cursor,error) {
+	return c.collection.Find(context.TODO(), filter) //bson.D{{}}
+}
+
+func (c *MongoCollection) Update(filter interface{},data interface{}) (*mongo.UpdateResult, error) {
+	return c.collection.UpdateOne(context.TODO(),filter,data)
+}
+
